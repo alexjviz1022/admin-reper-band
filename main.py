@@ -48,6 +48,7 @@ def pedir_duracion():
     return duracion
 
 def pedir_afinacion():
+
     tonicas_validas = ["A", "B", "C", "D", "E", "F", "G"]
 
     while True:
@@ -136,30 +137,69 @@ def pedir_enlace(texto_enlace):
         else:
             print("Introduce una URL valida o deja el campo vacio")
 
-titulo_valor = pedir_titulo()
+def agregar_cancion():
+    titulo_valor = pedir_titulo()
 
-artista_valor = pedir_artista()
+    artista_valor = pedir_artista()
 
-duracion_valor = pedir_duracion()
+    duracion_valor = pedir_duracion()
 
-tipo_afinacion = pedir_afinacion()
+    tipo_afinacion = pedir_afinacion()
 
-dificultad_valor = pedir_dificultad()
+    dificultad_valor = pedir_dificultad()
 
-cancion_enlace_valor = pedir_enlace("Enlace de la canción (video YouTube o Spotify); deja vacío si no tienes: ")
+    cancion_enlace_valor = pedir_enlace("Enlace de la canción (video YouTube o Spotify); deja vacío si no tienes: ")
 
-tabs_enlace_valor = pedir_enlace("Enlace de tablatura; deja vacío si no tienes: ")
+    tabs_enlace_valor = pedir_enlace("Enlace de tablatura; deja vacío si no tienes: ")
 
 
-cancion = {'titulo': titulo_valor, 
-            'artista':artista_valor, 
-            'duracion_total':duracion_valor, 
-            'afinacion':tipo_afinacion, 
-            'dificultad':dificultad_valor, 
-            'enlace_cancion': cancion_enlace_valor, 
-            'enlace_tablatura': tabs_enlace_valor }
+    cancion = {'titulo': titulo_valor, 
+                'artista':artista_valor, 
+                'duracion_total':duracion_valor, 
+                'afinacion':tipo_afinacion, 
+                'dificultad':dificultad_valor, 
+                'enlace_cancion': cancion_enlace_valor, 
+                'enlace_tablatura': tabs_enlace_valor }
 
-canciones.append(cancion)
+    canciones.append(cancion)
 
-print(canciones)
+def mostrar_canciones():
+    for num_canciones, cancion in enumerate(canciones, start=1):
+        minutos, segundos = divmod(cancion['duracion_total'], 60)
+        print(
+            f"{num_canciones}. {cancion['titulo']}\n"
+            f"   Artista: {cancion['artista']}\n"
+            f"   Duración: {minutos}:{segundos:02d}\n"
+            f"   Afinación: {cancion['afinacion']}\n"
+            f"   Dificultad: {cancion['dificultad']}\n"
+        )
+while True:
+    try:
+        print(" 1. Agregar canción \n 2. Ver canción \n 3. Salir ")
+        usuario_eleccion = int(input("Selecciona una opción del menu: "))
+    except ValueError:
+        print("Solo se permiten los números antes indicados")
+        print("-" * 10)
+        continue
+
+    if usuario_eleccion == 1:
+        agregar_cancion()
+        print("-" * 10)
+    elif usuario_eleccion == 2:
+        if canciones == []:
+            print("Aun no hay canciones agregadas")
+            print("-" * 10)
+        else:
+            print("---CANCIONES---")
+            mostrar_canciones()
+            print("-" * 10)            
+    elif usuario_eleccion == 3:
+        print("Hasta luego")
+        break
+    else:
+        print("Ese es un número no valido")
+        print("-" * 10)
+
+
+
    
