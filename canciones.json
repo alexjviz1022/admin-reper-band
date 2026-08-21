@@ -1,0 +1,20 @@
+[
+    {
+        "titulo": "Master",
+        "artista": "Metallica",
+        "duracion_total": 423,
+        "afinacion": "E Est\u00e1ndar",
+        "dificultad": "Dif\u00edcil",
+        "enlace_cancion": "",
+        "enlace_tablatura": ""
+    },
+    {
+        "titulo": "killing",
+        "artista": "rage",
+        "duracion_total": 244,
+        "afinacion": "Drop Db",
+        "dificultad": "F\u00e1cil",
+        "enlace_cancion": "",
+        "enlace_tablatura": ""
+    }
+]

@@ -1,4 +1,15 @@
-canciones = []
+import json
+
+def cargar_canciones():
+    try:
+        with open("canciones.json", "r") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        return []
+
+def guardar_canciones():
+    with open("canciones.json", "w") as archivo:
+        json.dump(canciones, archivo, indent=4)
 
 def pedir_titulo():
     while True:
@@ -173,6 +184,8 @@ def mostrar_canciones():
             f"   Afinación: {cancion['afinacion']}\n"
             f"   Dificultad: {cancion['dificultad']}\n"
         )
+
+canciones = cargar_canciones()
 while True:
     try:
         print(" 1. Agregar canción \n 2. Ver canción \n 3. Salir ")
@@ -184,6 +197,7 @@ while True:
 
     if usuario_eleccion == 1:
         agregar_cancion()
+        guardar_canciones()
         print("-" * 10)
     elif usuario_eleccion == 2:
         if canciones == []:
