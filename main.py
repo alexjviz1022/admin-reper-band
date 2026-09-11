@@ -185,10 +185,85 @@ def mostrar_canciones():
             f"   Dificultad: {cancion['dificultad']}\n"
         )
 
+def mostrar_lista_canciones():    
+    for num_canciones, cancion in enumerate(canciones, start=1):
+        print(
+            f"{num_canciones}. {cancion['titulo']}\n"
+                )
+
+def editar_cancion():
+    print("0. cancelar\n")
+    mostrar_lista_canciones()
+    while True:
+        try:
+            eleccion_usuario = int(input("¿Que canción quieres editar? Solo puedes elegir el número de la canción: "))
+            if eleccion_usuario >= 1 and eleccion_usuario <= len(canciones):
+                break
+            elif eleccion_usuario == 0:
+                print("-" * 10)
+                return
+            else:
+                print("Solo puedes elegir las canciones que esten agregadas")
+        except ValueError:
+            print("Solo se permiten números enteros")
+
+
+    indice = eleccion_usuario - 1
+
+    while True:
+        try:
+            modificacion_exacta = int(input("Elije uno de los números disponibles\n0.Cancelar\n1.Titulo\n2.Artista\n3.Duración\n4.Afinación\n5.Dificultad\n6.Enlace a la canción\n7.Tablaturas\n¿Que quieres modificar? "))
+            if modificacion_exacta == 1:
+                print("Realiza los cambios al titulo")
+                canciones[indice]["titulo"] = pedir_titulo()
+                break
+
+            elif modificacion_exacta == 2:
+                print("Realiza los cambios al artista")
+                canciones[indice]["artista"] = pedir_artista()
+                break
+
+            elif modificacion_exacta == 3:
+                print("Realiza los cambios a la duración")
+                canciones[indice]["duracion_total"] = pedir_duracion()
+                break
+
+            elif modificacion_exacta == 4:
+                print("Realiza los cambios de la afinación")
+                canciones[indice]["afinacion"] = pedir_afinacion()
+                break
+            
+            elif modificacion_exacta == 5:
+                print("Realiza los cambios a la dificultad")
+                canciones[indice]["dificultad"] = pedir_dificultad()
+                break
+            elif modificacion_exacta == 6:
+                print("Realiza los cambios al enlace de YouTube")
+                canciones[indice]["enlace_cancion"] = pedir_enlace("Enlace de la canción; deja vacío si no tienes: ")
+                break
+                        
+            elif modificacion_exacta == 7:
+                print("Realiza los cambios al enlace de las tablaturas")
+                canciones[indice]["enlace_tablatura"] = pedir_enlace("Enlace de tablatura; deja vacío si no tienes: ")
+                break
+            elif modificacion_exacta == 0:
+                print("-" * 10)
+                return
+
+            else:
+                print("Solo se permiten los números de la lista")
+        except ValueError:
+            print("Solo números enteros")
+    guardar_canciones()
+    print("-" * 10)
+    print("CAMBIOS LISTOS")
+    print(canciones[indice])
+    print("-" * 10)
+
 canciones = cargar_canciones()
 while True:
     try:
-        print(" 1. Agregar canción \n 2. Ver canción \n 3. Salir ")
+        print(" 1. Agregar canción \n 2. Ver canción \n 3. Editar \n 4. Salir ")
         usuario_eleccion = int(input("Selecciona una opción del menu: "))
     except ValueError:
         print("Solo se permiten los números antes indicados")
@@ -206,8 +281,14 @@ while True:
         else:
             print("---CANCIONES---")
             mostrar_canciones()
-            print("-" * 10)            
+            print("-" * 10)
     elif usuario_eleccion == 3:
+        if canciones == []:
+            print("Aun no hay canciones agregadas")
+            print("-" * 10)
+        else:
+            editar_cancion()         
+    elif usuario_eleccion == 4:
         print("Hasta luego")
         break
     else:

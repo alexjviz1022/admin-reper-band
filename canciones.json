@@ -1,20 +1,20 @@
 [
     {
-        "titulo": "Master",
+        "titulo": "Master Of Puppets",
         "artista": "Metallica",
         "duracion_total": 423,
-        "afinacion": "E Est\u00e1ndar",
+        "afinacion": "Eb Est\u00e1ndar",
         "dificultad": "Dif\u00edcil",
         "enlace_cancion": "",
-        "enlace_tablatura": ""
+        "enlace_tablatura": "https://www.songsterr.com/a/wsa/metallica-master-of-puppets-tab-s455118"
     },
     {
-        "titulo": "killing",
+        "titulo": "Killing in the name",
         "artista": "rage",
-        "duracion_total": 244,
+        "duracion_total": 90,
         "afinacion": "Drop Db",
-        "dificultad": "F\u00e1cil",
-        "enlace_cancion": "",
+        "dificultad": "Dif\u00edcil",
+        "enlace_cancion": "https://youtu.be/bWXazVhlyxQ?si=oVprzq3vmGE-I5Jf",
         "enlace_tablatura": ""
     }
 ]
