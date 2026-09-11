@@ -260,10 +260,44 @@ def editar_cancion():
     print(canciones[indice])
     print("-" * 10)
 
+def eliminar_cancion():
+    print("0. cancelar\n")
+    mostrar_lista_canciones()
+    while True:
+        try:
+            eleccion_usuario_eliminacion = int(input("¿Que canción quieres eliminar? Solo puedes elegir el número de la canción: "))
+            if eleccion_usuario_eliminacion >= 1 and eleccion_usuario_eliminacion <= len(canciones):
+                break
+            elif eleccion_usuario_eliminacion == 0:
+                return
+            else:
+                print("Solo puedes elegir las canciones que esten agregadas")
+        except ValueError:
+            print("Solo se permiten números enteros")
+
+
+    indice = eleccion_usuario_eliminacion - 1
+
+    while True:
+        try:
+            eleccion_final_eliminar = int(input(f"¿Estas seguro de querer eliminar: {canciones[indice]["titulo"]}?\n1.Si\n2.No\n"))
+            if eleccion_final_eliminar == 1:
+                canciones.pop(indice)
+                guardar_canciones()
+                print("Canción eliminada con exito")
+                print("-" * 10)
+                break
+            elif eleccion_final_eliminar == 2:
+                return
+            else:
+                print("Solo puedes elegir entre esas dos opciones:")
+        except ValueError:
+            print("Solo números enteros")
+
 canciones = cargar_canciones()
 while True:
     try:
-        print(" 1. Agregar canción \n 2. Ver canción \n 3. Editar \n 4. Salir ")
+        print(" 1. Agregar canción \n 2. Ver canción \n 3. Editar \n 4. Eliminar \n 5. Salir ")
         usuario_eleccion = int(input("Selecciona una opción del menu: "))
     except ValueError:
         print("Solo se permiten los números antes indicados")
@@ -289,6 +323,12 @@ while True:
         else:
             editar_cancion()         
     elif usuario_eleccion == 4:
+        if canciones == []:
+            print("Aun no hay canciones agregadas")
+            print("-" * 10)
+        else:
+            eliminar_cancion()    
+    elif usuario_eleccion == 5:
         print("Hasta luego")
         break
     else:
